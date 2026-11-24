@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firefly Wedding | &#12507;&#12479;&#12523;&#12398;&#23233;&#20837;&#12426; - Experiencia Hipermedia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="mode-calm">
+
+  <canvas id="fireflies-canvas"></canvas>
+
+  <header class="navbar">
+    <div class="logo">&#12507;&#12479;&#12523;&#12398;&#23233;&#20837;&#12426;</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#personajes">Personajes</a></li>
+        <li><a href="#isla">Isla Tennyo</a></li>
+        <li><a href="#decision">La Propuesta</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-controls">
+      <button id="audio-toggle" class="btn-audio" title="Activar o silenciar ambiente">
+        <span>&#9834;</span>
+        <span id="audio-text">Audio: Off</span>
+      </button>
+
+      <button id="mood-toggle" class="btn-mood" title="Cambiar atm&#243;sfera">
+        <span class="dot"></span>
+        <span id="mood-text">Modo: Promesa</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Portada -->
+    <section id="inicio" class="hero">
+      <div class="hero-content">
+        <p class="era-tag">ERA MEIJI &mdash; A&#209;O 20 &middot; JAP&#211;N</p>
+        <h1 class="main-title">
+          <span class="jp-subtitle">&#12507;&#12479;&#12523;&#12398;&#23233;&#20837;&#12426;</span>
+          Firefly Wedding
+        </h1>
+        <p class="hero-quote" id="dynamic-quote"></p>
+
+        <div class="hero-actions">
+          <a href="#personajes" class="btn-primary">Comenzar recorrido</a>
+          <button id="burst-btn" class="btn-secondary">Atraer luci&#233;rnagas</button>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <span>Desliza para entrar en la noche</span>
+        <div class="line"></div>
+      </div>
+    </section>
+
+    <!-- 2. Personajes -->
+    <section id="personajes" class="section-block">
+      <div class="section-header">
+        <p class="section-tag">RETRATOS Y DUALIDAD</p>
+        <h2 class="section-title">Personajes Principales</h2>
+        <p class="section-subtitle">
+          Selecciona un personaje y alterna entre sus facetas para observar su conflicto interno.
+        </p>
+      </div>
+
+      <div class="character-tabs" role="tablist">
+        <button class="char-tab active" data-char="shinpei">Shinpei Goto</button>
+        <button class="char-tab" data-char="satoko">Satoko Kirigaya</button>
+        <button class="char-tab" data-char="kotaro">Kotaro</button>
+      </div>
+
+      <div class="character-showcase" id="character-card">
+        <div class="char-visual">
+          <div class="char-badge" id="char-aspect-badge"></div>
+          <div class="char-monogram" id="char-monogram"></div>
+          <p class="char-role" id="char-role"></p>
+          <button id="toggle-facet-btn" class="btn-facet">
+            Alternar faceta &#8635;
+          </button>
+        </div>
+
+        <div class="char-info">
+          <h3 class="char-name" id="char-name"></h3>
+          <p class="char-quote" id="char-quote"></p>
+          <p class="char-bio" id="char-bio"></p>
+
+          <div class="char-stats">
+            <div class="stat-item">
+              <div class="stat-label">
+                <span id="stat1-label"></span>
+                <span id="stat1-val"></span>
+              </div>
+              <div class="stat-bar">
+                <div class="stat-fill" id="stat1-bar"></div>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-label">
+                <span id="stat2-label"></span>
+                <span id="stat2-val"></span>
+              </div>
+              <div class="stat-bar">
+                <div class="stat-fill" id="stat2-bar"></div>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-label">
+                <span id="stat3-label"></span>
+                <span id="stat3-val"></span>
+              </div>
+              <div class="stat-bar">
+                <div class="stat-fill" id="stat3-bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Mapa Interactivo de la Isla Tennyo -->
+    <section id="isla" class="section-block">
+      <div class="section-header">
+        <p class="section-tag">GEOGRAF&#205;A Y TENSI&#211;N</p>
+        <h2 class="section-title">Mapa de la Isla Tennyo</h2>
+        <p class="section-subtitle">
+          Toca cada punto de inter&#233;s sobre el plano para inspeccionar su atm&#243;sfera y relevancia.
+        </p>
+      </div>
+
+      <div class="island-layout">
+        <div class="island-map">
+          <div class="map-grid"></div>
+          <span class="map-compass">&#21271; &middot; NORTE</span>
+          <div class="island-silhouette" aria-hidden="true"></div>
+
+          <button class="map-pin active" data-loc="mansion" style="top: 32%; left: 46%;">
+            <span class="pin-pulse"></span>
+            <span class="pin-label">Mansi&#243;n Kirigaya</span>
+          </button>
+
+          <button class="map-pin" data-loc="bosque" style="top: 56%; left: 30%;">
+            <span class="pin-pulse"></span>
+            <span class="pin-label">Bosque de Luci&#233;rnagas</span>
+          </button>
+
+          <button class="map-pin" data-loc="puerto" style="top: 74%; left: 62%;">
+            <span class="pin-pulse"></span>
+            <span class="pin-label">Muelle y Niebla</span>
+          </button>
+
+          <button class="map-pin" data-loc="sombra" style="top: 24%; left: 72%;">
+            <span class="pin-pulse"></span>
+            <span class="pin-label">Zona de Caza</span>
+          </button>
+        </div>
+
+        <aside class="location-card" id="location-panel">
+          <div>
+            <div class="loc-meta">
+              <span id="loc-code"></span>
+              <span id="loc-risk"></span>
+            </div>
+            <h3 class="loc-title" id="loc-title"></h3>
+            <p class="loc-jp" id="loc-jp"></p>
+            <p class="loc-desc" id="loc-desc"></p>
+          </div>
+          <div class="loc-note">
+            <strong>Clave hipermedia:</strong> <span id="loc-note"></span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 4. Escena Interactiva: La Propuesta -->
+    <section id="decision" class="section-block">
+      <div class="section-header">
+        <p class="section-tag">INTERACTIVIDAD NARRATIVA</p>
+        <h2 class="section-title">La Propuesta</h2>
+        <p class="section-subtitle">
+          Toma decisiones en una escena inspirada en el pacto entre Satoko y Shinpei y observa el desenlace.
+        </p>
+      </div>
+
+      <div class="proposal-box">
+        <div class="proposal-hud">
+          <span id="scene-step"></span>
+          <div class="tension-meter">
+            <span>Tensi&#243;n:</span>
+            <div class="tension-track">
+              <div class="tension-fill" id="tension-fill" style="width: 35%;"></div>
+            </div>
+            <span id="tension-value">35%</span>
+          </div>
+        </div>
+
+        <p class="scene-narration" id="scene-narration"></p>
+        <div class="scene-choices" id="scene-choices"></div>
+
+        <div class="scene-actions">
+          <button id="restart-scene-btn" class="btn-secondary" style="display: none;">
+            Reiniciar escena
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Firefly Wedding (&#12507;&#12479;&#12523;&#12398;&#23233;&#20837;&#12426;) &middot; Proyecto Hipermedia Interactiva &mdash; HTML5 Canvas, CSS &amp; JavaScript</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
